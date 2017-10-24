@@ -1,4 +1,4 @@
 # linear_re_algo
 
-My own linear regression from scratch USing "only" Python and Numpy  
+My own linear regression from scratch Using "only" Python and Numpy  
 
