@@ -1,12 +1,12 @@
 
-
-
-
 """
 file: main.py
 author: Petri Lamminaho
-
-
+My own linear reg algorith
+Makes random dataset
+Find best b and m values
+Minimize loss/error and find best fit line for data and  calculate model confidence
+Draw the graph
 """
 
 import numpy as np
@@ -72,7 +72,7 @@ Minimize squared error/loss and returns it
 
 def coefficient_of_determination(ys_orig, ys_line):
     """
-return confidende value for the model
+return confidende value for the model calls 'squared_error' function
     :param ys_orig:
     :param ys_line:
     :return: confidence percent
