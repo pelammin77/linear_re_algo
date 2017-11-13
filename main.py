@@ -25,15 +25,13 @@ style.use('fivethirtyeight')
 def create_dataset(how_many, variance, step=2, correlation=False):
     """
     create random dataset and return it
-
+params:
     :param how_many:
     :param variance:
     :param step:
     :param correlation:
     :return: np.array(xs, dtype=np.float64), np.array(ys, dtype=np.float64)
-
     """
-
     val = 1
     ys = []
     for i in range(how_many):
@@ -47,11 +45,10 @@ def create_dataset(how_many, variance, step=2, correlation=False):
     return np.array(xs, dtype=np.float64), np.array(ys, dtype=np.float64)
 
 
-#plt.scatter(Xs, Ys)
-#plt.show()
-
 def find_best_fit_slope_and_intercept(Xs, Ys):
     """
+    Find best b and m value for slope for data
+:params:
     :param Xs:
     :param Ys:
     :return: m, b
@@ -63,10 +60,9 @@ def find_best_fit_slope_and_intercept(Xs, Ys):
     b = mean(Ys) - m * mean(Xs)
     return m, b
 
-
 def squared_error(ys_org, ys_line):
     """
-
+Minimize squared error/loss and returns it
     :param ys_org:
     :param ys_line:
     :return: squared_error
@@ -74,43 +70,29 @@ def squared_error(ys_org, ys_line):
 
     return sum((ys_line - ys_org) ** 2)
 
-
-
 def coefficient_of_determination(ys_orig, ys_line):
     """
-
+return confidende value for the model
     :param ys_orig:
     :param ys_line:
-    :return: confidence  percent
+    :return: confidence percent
     """
     y_mean_line = [mean(ys_orig) for y in ys_orig]
     squared_error_regr = squared_error(ys_orig, ys_line)
     squared_error_y_mean = squared_error(ys_orig, y_mean_line)
     return 1 - (squared_error_regr / squared_error_y_mean)
 
-
-
-
-
-
-
-Xs, Ys = create_dataset(40, 10, 2, correlation='pos')
-m, b  = find_best_fit_slope_and_intercept(Xs,Ys)
-reg_line =[(m * x) + b for x in Xs]
-#regression_line = [(m*x)+b for x in Xs]
-pre_x = 9 # test predict value x = 9
-pre_y =(m*pre_x) + b # calculates y when x = 9
-r_sq = coefficient_of_determination(Ys, reg_line)
-print('reg', r_sq)
-plt.scatter(Xs, Ys)
-plt.scatter(pre_x, pre_y) # draws predict point to the graph
-plt.plot(Xs, reg_line)
-plt.show()
-
-
-
-
-
-
-
-
+# Main function
+if __name__ == '__main__':
+    Xs, Ys = create_dataset(40, 10, 2, correlation='pos')
+    m, b  = find_best_fit_slope_and_intercept(Xs,Ys)
+    reg_line =[(m * x) + b for x in Xs]
+    #regression_line = [(m*x)+b for x in Xs]
+    pre_x = 9 # test predict value x = 9
+    pre_y =(m*pre_x) + b # calculates y when x = 9
+    r_sq = coefficient_of_determination(Ys, reg_line)
+    print('reg', r_sq)
+    plt.scatter(Xs, Ys)
+    plt.scatter(pre_x, pre_y) # draws predict point to the graph
+    plt.plot(Xs, reg_line)
+    plt.show()
